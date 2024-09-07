@@ -1,3 +1,5 @@
+let interval;
+
 function startCountdown() {
     const secondsInput = document.getElementById('seconds');
     let time = parseInt(secondsInput.value);
@@ -10,7 +12,8 @@ function startCountdown() {
     const display = document.getElementById('timerDisplay');
     display.textContent = `Time remaining: ${time} seconds`;
 
-    const interval = setInterval(() => {
+    clearInterval(interval); // Clear any existing intervals
+    interval = setInterval(() => {
         time -= 1;
         display.textContent = `Time remaining: ${time} seconds`;
 
@@ -20,4 +23,9 @@ function startCountdown() {
             alert('Time’s up!');
         }
     }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(interval);
+    document.getElementById('timerDisplay').textContent = 'Timer reset';
 }
